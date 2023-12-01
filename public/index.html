@@ -23,39 +23,39 @@
     <script src="js/libs/MTLLoader.js"></script>
     <script src="js/libs/GPUParticleSystem.js"></script>
     <script src="js/libs/FirstPersonControls.js"></script>
-    <script src="js/index.js" defer></script>
+    <script src="js/index.js" ></script>
     <!-- Loaders -->
     <script>
       var textureLoader = new THREE.TextureLoader()
-    </script>
-    <script>
       var objLoader = new THREE.OBJLoader()
-    </script>
-    <script>
       var mtlLoader = new THREE.MTLLoader()
+
+      $(document).ready(function () {
+        $.getScript("js/main.js")
+      })
     </script>
     <!-- Shaders -->
-    <script src="js/shaders.js" defer></script>
+    <script src="js/shaders.js"></script>
     <!-- Global timing -->
-    <script src="js/time.js" defer></script>
+    <script src="js/time.js"></script>
     <!-- Camera parameters -->
     <!-- Note: THREE.js camera is not in this script. -->
     <!-- This file contains an object for calculating camera position. -->
-    <script src="js/cameraParameters.js" defer></script>
+    <script src="js/cameraParameters.js"></script>
     <!-- Celestial body abstract -->
-    <script src="js/CelestialBody.js" defer></script>
+    <script src="js/CelestialBody.js"></script>
     <!-- Orbit function -->
-    <script src="js/orbit.js" defer></script>
+    <script src="js/orbit.js"></script>
     <!-- Data -->
-    <script src="js/data.js" defer></script>
+    <script src="js/data.js"></script>
     <!-- Data -->
     <!-- Planet loader -->
     <!-- Animation -->
-    <script src="js/animation.js" defer></script>
+    <script src="js/animation.js"></script>
     <!-- Controls -->
-    <script src="js/control.js" defer></script>
-    <script src="js/libs/dat.gui.min.js" defer></script>
+    <script src="js/control.js"></script>
+    <script src="js/libs/dat.gui.min.js"></script>
     <!-- Initializers -->
-    <script src="js/main.js" defer></script>
+    <!-- <script src="js/main.js" defer></script> -->
   </body>
 </html>
