@@ -54,6 +54,12 @@ function onWindowMouseUp(event) {
 }
 
 function onMouseWheelChange(event) {
+    const { ctrlKey } = event
+   if (ctrlKey) {
+      event.preventDefault();
+      return
+   }
+   
     var body = params.Camera;
     var delta = Math.max(-1, Math.min(1, (event.wheelDelta || -event.detail)));
     var newDistance = trackCamera[body].distance - 0.05 * trackCamera[body].distance * delta;
@@ -64,6 +70,54 @@ function onMouseWheelChange(event) {
         newDistance = trackCamera[body].safeFar;
     }
     trackCamera[body].distance = newDistance;
+}
+
+// touch screen
+function onZoomChange(delta) {
+    var body = params.Camera;
+    var newDistance = trackCamera[body].distance - 0.05 * trackCamera[body].distance * delta;
+
+    if (newDistance <= trackCamera[body].safeDistance) {
+        newDistance = trackCamera[body].safeDistance;
+    } else if (newDistance >= trackCamera[body].safeFar) {
+        newDistance = trackCamera[body].safeFar;
+    }
+    trackCamera[body].distance = newDistance;
+}
+
+function onInputStart(event) {
+    event.preventDefault()
+
+    if (event.touches && event.touches.length === 2) {
+        // Store the initial distance between two touches
+        touchStartDistance = getTouchDistance(event.touches);
+    }
+}
+
+function onInputMove(event) {
+    event.preventDefault()
+    if (event.touches && event.touches.length === 2) {
+        // Calculate the current distance between two touches
+        const touchCurrentDistance = getTouchDistance(event.touches);
+
+        // Calculate the change in distance
+        const deltaDistance = touchCurrentDistance - touchStartDistance;
+
+        // Use the deltaDistance value to control zoom in and zoom out
+        onZoomChange(deltaDistance);
+
+        // Update the initial distance for the next move event
+        touchStartDistance = touchCurrentDistance;
+    }
+}
+
+
+
+function getTouchDistance(touches) {
+    // Calculate the distance between two touches
+    const dx = touches[0].clientX - touches[1].clientX;
+    const dy = touches[0].clientY - touches[1].clientY;
+    return Math.sqrt(dx * dx + dy * dy);
 }
 
 var posSrc = { pos: 0.0 };
