@@ -1,17 +1,22 @@
-import React from "react"
-import logo from "./logo.svg"
+import React, { useEffect, useRef } from "react"
 import "./App.css"
 
 function App() {
+  const startButtonRef = useRef<HTMLAnchorElement>(null)
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      startButtonRef.current?.click()
+    }, 500)
+
+    return () => clearTimeout(timeoutId)
+  })
   return (
     <div>
       <div id="container">
         <div id="prompt">
-          <img src="res/loading/splash.png" width="60%" />
-          <h3>PALE DOTS</h3>
-          <p>A mesmerizing journey around the solar system</p>
-          <p className="small">This splash screen comes from screenshots of the project</p>
-          <a id="control" href="#" className="progress">
+          <img src="res/loading/earth.jpg" width="60%" />
+          <h3>Buckle Up for a Thrilling Space Adventure Through My Portfolio!</h3>
+          <a ref={startButtonRef} id="control" href="#" className="progress">
             Start
           </a>
         </div>
