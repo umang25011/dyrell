@@ -1,15 +1,38 @@
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import "./App.css"
 
 function App() {
   const startButtonRef = useRef<HTMLAnchorElement>(null)
+  const [pageLoaded, setPageLoaded] = useState(false)
+
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       startButtonRef.current?.click()
     }, 500)
 
-    return () => clearTimeout(timeoutId)
+    const intervalId = !pageLoaded
+      ? setInterval(() => {
+          if (!pageLoaded) {
+            const canvasElement = document.getElementsByTagName("canvas")
+            if (canvasElement.length > 0) {
+              if (intervalId) clearInterval(intervalId)
+              setPageLoaded(true)
+            }
+          }
+        }, 100)
+      : null
+
+    return () => {
+      clearTimeout(timeoutId)
+      if (intervalId) clearInterval(intervalId)
+    }
   })
+
+  useEffect(() => {
+    if (pageLoaded) {
+      console.log("Boom")
+    }
+  }, [pageLoaded])
   return (
     <div>
       <div id="container">

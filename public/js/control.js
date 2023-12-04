@@ -54,12 +54,6 @@ function onWindowMouseUp(event) {
 }
 
 function onMouseWheelChange(event) {
-    const { ctrlKey } = event
-   if (ctrlKey) {
-      event.preventDefault();
-      return
-   }
-   
     var body = params.Camera;
     var delta = Math.max(-1, Math.min(1, (event.wheelDelta || -event.detail)));
     var newDistance = trackCamera[body].distance - 0.05 * trackCamera[body].distance * delta;

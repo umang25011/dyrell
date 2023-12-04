@@ -199,16 +199,16 @@ function initRender() {
   renderer.setPixelRatio(window.devicePixelRatio)
   renderer.setSize(window.innerWidth, window.innerHeight)
 
-  // renderer.shadowMapEnabled = true;
-  // renderer.shadowMapSoft = true;
-  // renderer.shadowMap.enabled = true;
-  // renderer.shadowCameraNear = 3;
-  // renderer.shadowCameraFar = 100;
-  // renderer.shadowMapDarkness = 0.2;
-  // renderer.shadowCameraFov = 50;
-  // renderer.shadowMapBias = 0.0039;
-  // renderer.shadowMapWidth = 1024;
-  // renderer.shadowMapHeight = 1024;
+//   renderer.shadowMapEnabled = true;
+//   renderer.shadowMapSoft = true;
+//   renderer.shadowMap.enabled = true;
+//   renderer.shadowCameraNear = 3;
+//   renderer.shadowCameraFar = 100;
+//   renderer.shadowMapDarkness = 0.2;
+//   renderer.shadowCameraFov = 50;
+//   renderer.shadowMapBias = 0.0039;
+//   renderer.shadowMapWidth = 1024;
+//   renderer.shadowMapHeight = 1024;
 }
 
 function initObjects() {
