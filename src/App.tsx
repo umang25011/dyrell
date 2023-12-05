@@ -6,15 +6,10 @@ function App() {
   const [pageLoaded, setPageLoaded] = useState(false)
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      startButtonRef.current?.click()
-    }, 500)
-
     const intervalId = !pageLoaded
       ? setInterval(() => {
           if (!pageLoaded) {
-            const canvasElement = document.getElementsByTagName("canvas")
-            if (canvasElement.length > 0) {
+            if (window.WEB_APP_READY) {
               if (intervalId) clearInterval(intervalId)
               setPageLoaded(true)
             }
@@ -23,7 +18,6 @@ function App() {
       : null
 
     return () => {
-      clearTimeout(timeoutId)
       if (intervalId) clearInterval(intervalId)
     }
   })
@@ -40,7 +34,7 @@ function App() {
           <img src="res/loading/earth.jpg" width="60%" />
           <h3>Buckle Up for a Thrilling Space Adventure Through My Portfolio!</h3>
           <a ref={startButtonRef} id="control" href="#" className="progress">
-            Start
+            Ready?
           </a>
         </div>
       </div>

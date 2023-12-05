@@ -83,7 +83,7 @@ function onInputStart(event) {
     if (event.touches && event.touches.length === 2) {
         // Store the initial distance between two touches
         touchStartDistance = getTouchDistance(event.touches);
-    } else onWindowMouseDown(event)
+    }
 }
 
 function onInputMove(event) {
@@ -99,7 +99,7 @@ function onInputMove(event) {
 
         // Update the initial distance for the next move event
         touchStartDistance = touchCurrentDistance;
-    } else onWindowMouseMove(event)
+    }
 }
 
 
