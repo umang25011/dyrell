@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import "./App.css"
+import { startMain } from "./journey"
 
 function App() {
   const startButtonRef = useRef<HTMLAnchorElement>(null)
@@ -23,8 +24,14 @@ function App() {
   })
 
   useEffect(() => {
+    let timeoutID: NodeJS.Timeout
     if (pageLoaded) {
-      console.log("Boom")
+      timeoutID = setTimeout(() => {
+        startMain()
+      }, 3000)
+    }
+    return () => {
+      if (timeoutID) clearTimeout(timeoutID)
     }
   }, [pageLoaded])
   return (

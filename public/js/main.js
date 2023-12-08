@@ -155,7 +155,7 @@ function initLight() {
   ambientLight = new THREE.AmbientLight(0xffffff)
   ambientLight.intensity = 0
   scene.add(ambientLight)
-  // sunLight.castShadow = true;
+  sunLight.castShadow = true;
 }
 
 function drawOrbit(celestialBody) {
