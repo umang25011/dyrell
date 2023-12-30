@@ -1,0 +1,47 @@
+#modal-body {
+  position: absolute;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  height: 300px;
+  width: 500px;
+  margin: -150px 0 0 -250px;
+  transition: none;
+  background: inherit;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0 50px 5px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+}
+
+#modal-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  line-height: 300px;
+  text-align: center;
+}
+#modal-background {
+  background: inherit;
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  height: calc(100% + 100px);
+  width: calc(100% + 100px);
+  -webkit-filter: blur(10px);
+  filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+#modal-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  margin-left: 20px;
+  margin-right: 20px;
+}

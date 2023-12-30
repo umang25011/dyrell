@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
-import "./App.css"
-import { startMain } from "./journey"
+import { startMain } from "./helper/journey"
+import Modal from "./components/modal/Modal"
 
 function App() {
   const startButtonRef = useRef<HTMLAnchorElement>(null)
@@ -45,6 +45,7 @@ function App() {
           </a>
         </div>
       </div>
+      <Modal />
       <div>
         <audio id="promptSound" src="res/prompt/ding.wav" />
       </div>
