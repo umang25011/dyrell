@@ -1,4 +1,4 @@
-import { SolarObjects } from "./constants"
+import { CELESTIAL_BODIES, SLEEP } from "./constants"
 
 export const journeyThroughSpace = () => {
   window.nextBody = "Earth"
@@ -13,11 +13,22 @@ export const journeyThroughSpace = () => {
 }
 
 export const startMain = () => {
-  // journeyThroughSpace()
-  visitPlanet("Mars")
+  console.log("Journey Started-------------------")
+
+  startTheJourney()
 }
 
-export const visitPlanet = (planet: keyof typeof SolarObjects) => {
+const startTheJourney = async () => {
+  // objects will be visited in this order
+  const FlowOfVisit: (keyof typeof CELESTIAL_BODIES)[] = ["Sun", "Mercury", "Venus", "Earth"]
+  for (let index = 0; index < FlowOfVisit.length; index++) {
+    const element = FlowOfVisit[index]
+    visitPlanet(element)
+    await SLEEP(CELESTIAL_BODIES[element].timeToWait)
+  }
+}
+
+export const visitPlanet = (planet: keyof typeof CELESTIAL_BODIES) => {
   // Show information about the current planet
   console.log("Visiting " + planet)
 

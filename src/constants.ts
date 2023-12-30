@@ -20,31 +20,22 @@ declare global {
     setTween: (curBody: string, nextBody: string) => void
     tween: any
     gui: any
-    params: { Camera: keyof typeof SolarObjects; onChange: (planet: keyof typeof SolarObjects) => void }
+    params: { Camera: keyof typeof CELESTIAL_BODIES; onChange: (planet: keyof typeof CELESTIAL_BODIES) => void }
     CelestialBody: any
     THREE: any
   }
 }
 
-export const SolarObjects = {
-  Galaxy: { name: "Galaxy" },
-  Sun: { name: "Sun" },
-  Comet: { name: "Comet" },
-  Ship: { name: "Ship" },
-  Mercury: { name: "Mercury" },
-  Venus: { name: "Venus" },
-  Earth: { name: "Earth" },
-  Mars: { name: "Mars" },
-  Jupiter: { name: "Jupiter" },
-  Saturn: { name: "Saturn" },
-  Uranus: { name: "Uranus" },
-  Neptune: { name: "Neptune" },
-  Pluto: { name: "Pluto" },
+export const SLEEP = (time: number) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, time)
+  })
 }
 
-export const celestialBodies = {
-  Sun: new window.CelestialBody({
+export const CELESTIAL_BODIES = {
+  Sun: {
     name: "Sun",
+    timeToWait: 30000,
     star: true,
     parent: "Sun",
     radius: 200,
@@ -71,9 +62,10 @@ export const celestialBodies = {
       color: new window.THREE.Vector3(1.0, 0.8, 0.4),
       radius: 500,
     },
-  }),
-  Mercury: new window.CelestialBody({
+  },
+  Mercury: {
     name: "Mercury",
+    timeToWait: 30000,
     radius: 3.8256,
     parent: "Sun",
     shineColor: 0x9999ff,
@@ -94,9 +86,10 @@ export const celestialBodies = {
       diffuse: { map: "res/mercury/diffuse.jpg" },
       bump: { map: "res/mercury/bump.jpg", height: 0 },
     },
-  }),
-  Venus: new window.CelestialBody({
+  },
+  Venus: {
     name: "Venus",
+    timeToWait: 30000,
     radius: 9.488,
     parent: "Sun",
     shineColor: 0x9999ff,
@@ -124,9 +117,10 @@ export const celestialBodies = {
         speed: 0.02,
       },
     },
-  }),
-  Earth: new window.CelestialBody({
+  },
+  Earth: {
     name: "Earth",
+    timeToWait: 30000,
     radius: 10,
     parent: "Sun",
     shineColor: 0x6666ff,
@@ -161,9 +155,10 @@ export const celestialBodies = {
       atmosphereStrength: 1.5,
       sunsetStrength: 1.0,
     },
-  }),
-  Comet: new window.CelestialBody({
+  },
+  Comet: {
     name: "Comet",
+    timeToWait: 30000,
     parent: "Sun",
     radius: 0,
     spherical: false,
@@ -174,9 +169,10 @@ export const celestialBodies = {
       eccentricity: 0.5,
       inclination: 10,
     },
-  }),
-  Ship: new window.CelestialBody({
+  },
+  Ship: {
     name: "Ship",
+    timeToWait: 30000,
     parent: "Earth",
     radius: 0.2,
     spherical: false,
@@ -196,9 +192,10 @@ export const celestialBodies = {
       period: 100.0,
       inclination: 0,
     },
-  }),
-  Astronaut: new window.CelestialBody({
+  },
+  Astronaut: {
     name: "Astronaut",
+    timeToWait: 30000,
     parent: "Earth",
     radius: 0.05,
     spherical: false,
@@ -221,9 +218,10 @@ export const celestialBodies = {
       period: 100.0,
       inclination: 0,
     },
-  }),
-  Moon: new window.CelestialBody({
+  },
+  Moon: {
     name: "Moon",
+    timeToWait: 30000,
     radius: 2.7243,
     parent: "Earth",
     shineColor: 0xff9988,
@@ -244,9 +242,10 @@ export const celestialBodies = {
       diffuse: { map: "res/moon/diffuse.jpg" },
       bump: { map: "res/moon/bump.jpg", height: 0.1 },
     },
-  }),
-  Mars: new window.CelestialBody({
+  },
+  Mars: {
     name: "Mars",
+    timeToWait: 30000,
     radius: 5.3226,
     parent: "Sun",
     shineColor: 0xff9988,
@@ -274,9 +273,10 @@ export const celestialBodies = {
       atmosphereStrength: 1.0,
       sunsetStrength: 0.9,
     },
-  }),
-  Phobos: new window.CelestialBody({
+  },
+  Phobos: {
     name: "Phobos",
+    timeToWait: 30000,
     radius: 1,
     parent: "Mars",
     shineColor: 0xff9988,
@@ -297,9 +297,10 @@ export const celestialBodies = {
       diffuse: { map: "res/phobos/diffuse.jpg" },
       bump: { map: "res/phobos/bump.jpg", height: 10 },
     },
-  }),
-  Deimos: new window.CelestialBody({
+  },
+  Deimos: {
     name: "Deimos",
+    timeToWait: 30000,
     radius: 0.5,
     parent: "Mars",
     shineColor: 0xff9988,
@@ -320,9 +321,10 @@ export const celestialBodies = {
       diffuse: { map: "res/deimos/diffuse.jpg" },
       bump: { map: "res/deimos/bump.jpg", height: 10 },
     },
-  }),
-  Jupiter: new window.CelestialBody({
+  },
+  Jupiter: {
     name: "Jupiter",
+    timeToWait: 30000,
     radius: 112.09,
     parent: "Sun",
     shineColor: 0x9999ff,
@@ -354,9 +356,10 @@ export const celestialBodies = {
       atmosphereStrength: 1.8,
       sunsetStrength: 0.6,
     },
-  }),
-  Callisto: new window.CelestialBody({
+  },
+  Callisto: {
     name: "Callisto",
+    timeToWait: 30000,
     radius: 4.0,
     parent: "Jupiter",
     shineColor: 0xff9988,
@@ -376,9 +379,10 @@ export const celestialBodies = {
       type: "lambert",
       diffuse: { map: "res/callisto/diffuse.jpg" },
     },
-  }),
-  Europa: new window.CelestialBody({
+  },
+  Europa: {
     name: "Europa",
+    timeToWait: 30000,
     radius: 3.0,
     parent: "Jupiter",
     shineColor: 0xff9988,
@@ -398,9 +402,10 @@ export const celestialBodies = {
       type: "lambert",
       diffuse: { map: "res/europa/diffuse.jpg" },
     },
-  }),
-  Io: new window.CelestialBody({
+  },
+  Io: {
     name: "Io",
+    timeToWait: 30000,
     radius: 3.0,
     parent: "Jupiter",
     shineColor: 0xff9988,
@@ -420,9 +425,10 @@ export const celestialBodies = {
       type: "lambert",
       diffuse: { map: "res/io/diffuse.png" },
     },
-  }),
-  Saturn: new window.CelestialBody({
+  },
+  Saturn: {
     name: "Saturn",
+    timeToWait: 30000,
     radius: 94.49,
     parent: "Sun",
     shineColor: 0x9999ff,
@@ -460,9 +466,10 @@ export const celestialBodies = {
       lower: 5,
       higher: 80,
     },
-  }),
-  Dione: new window.CelestialBody({
+  },
+  Dione: {
     name: "Dione",
+    timeToWait: 30000,
     radius: 5.0,
     parent: "Saturn",
     shineColor: 0xff9988,
@@ -482,9 +489,10 @@ export const celestialBodies = {
       type: "lambert",
       diffuse: { map: "res/dione/diffuse.jpg" },
     },
-  }),
-  Titan: new window.CelestialBody({
+  },
+  Titan: {
     name: "Titan",
+    timeToWait: 30000,
     radius: 6.0,
     parent: "Saturn",
     shineColor: 0xff9988,
@@ -504,9 +512,10 @@ export const celestialBodies = {
       type: "lambert",
       diffuse: { map: "res/titan/diffuse.jpg" },
     },
-  }),
-  Uranus: new window.CelestialBody({
+  },
+  Uranus: {
     name: "Uranus",
+    timeToWait: 30000,
     radius: 40.07,
     parent: "Sun",
     shineColor: 0x9999ff,
@@ -538,9 +547,10 @@ export const celestialBodies = {
       atmosphereStrength: 0.2,
       sunsetStrength: 0.7,
     },
-  }),
-  Neptune: new window.CelestialBody({
+  },
+  Neptune: {
     name: "Neptune",
+    timeToWait: 30000,
     radius: 38.83,
     parent: "Sun",
     shineColor: 0x9999ff,
@@ -565,9 +575,10 @@ export const celestialBodies = {
       lower: 10,
       higher: 20,
     },
-  }),
-  Pluto: new window.CelestialBody({
+  },
+  Pluto: {
     name: "Pluto",
+    timeToWait: 30000,
     radius: 15,
     parent: "Sun",
     shineColor: 0x9999ff,
@@ -587,7 +598,7 @@ export const celestialBodies = {
       type: "lambert",
       diffuse: { map: "res/pluto/diffuse.jpg" },
     },
-  }),
+  },
 }
 
 export {}
