@@ -132,7 +132,7 @@ function initCamera() {
   trackCamera["Galaxy"].theta = 80.0
   trackCamera["Galaxy"].phi = 0.0
   trackCamera["Comet"] = new cameraParameters(1000, 1000, "Comet")
-  var planets = ["Sun", "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"]
+  var planets = ["Sun", "Mercury", "Venus", "Earth", "Moon", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"]
   for (var i in planets) {
     trackCamera[planets[i]] = new cameraParameters(
       3.0 * celestialBodies[planets[i]].radius,
@@ -232,7 +232,7 @@ function initObjects() {
   var skyBox = new THREE.Mesh(skyGeometry, materialArray)
   skyBox.rotateX(Math.PI / 2)
   scene.add(skyBox)
-  var orbits = ["Comet", "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"]
+  var orbits = ["Comet", "Mercury", "Venus", "Earth", "Moon", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"]
   for (var i in orbits) {
     orbitDraw[orbits[i]] = drawOrbit(celestialBodies[orbits[i]])
   }
@@ -253,6 +253,7 @@ function initGui() {
     Mercury: true,
     Venus: true,
     Earth: true,
+    Moon: true,
     Mars: true,
     Jupiter: true,
     Saturn: true,
@@ -305,6 +306,7 @@ function initGui() {
       "Mercury",
       "Venus",
       "Earth",
+      "Moon",
       "Mars",
       "Jupiter",
       "Saturn",
