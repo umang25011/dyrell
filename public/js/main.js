@@ -155,7 +155,7 @@ function initLight() {
   ambientLight = new THREE.AmbientLight(0xffffff)
   ambientLight.intensity = 0
   scene.add(ambientLight)
-  sunLight.castShadow = true;
+  sunLight.castShadow = true
 }
 
 function drawOrbit(celestialBody) {
@@ -473,7 +473,9 @@ function checkCrash() {
 }
 
 function animate() {
-  requestAnimationFrame(animate)
+  setTimeout(function () {
+    requestAnimationFrame(animate)
+  }, 1000 / 40)
   TWEEN.update()
   if (roamingStatus) {
     cameraControl.update(clock.getDelta())
