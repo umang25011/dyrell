@@ -1,4 +1,4 @@
-import { CELESTIAL_BODIES, SLEEP } from "./constants"
+import { CELESTIAL_BODIES, MainData, SLEEP } from "./constants"
 
 export const journeyThroughSpace = () => {
   window.nextBody = "Earth"
@@ -12,20 +12,44 @@ export const journeyThroughSpace = () => {
   // window.gui.domElement.children[1].children[3].onchange('Ea')
 }
 
-export const startMain = () => {
+export const startMain = (setMainData: React.Dispatch<React.SetStateAction<MainData>>) => {
   console.log("Journey Started-------------------")
 
-  startTheJourney()
+  startTheJourney(setMainData)
 }
 
-const startTheJourney = async () => {
+const startTheJourney = async (setMainData: React.Dispatch<React.SetStateAction<MainData>>) => {
   // objects will be visited in this order
   const FlowOfVisit: (keyof typeof CELESTIAL_BODIES)[] = ["Sun", "Mercury", "Venus", "Earth"]
   for (let index = 0; index < FlowOfVisit.length; index++) {
     const element = FlowOfVisit[index]
     visitPlanet(element)
+
+    // show the modal
+    displayModal(CELESTIAL_BODIES[element].content, setMainData)
+
+    // wait for users to read the content
     await SLEEP(CELESTIAL_BODIES[element].timeToWait)
+    hideModal(setMainData)
   }
+}
+
+const displayModal = (content: string, setMainData: React.Dispatch<React.SetStateAction<MainData>>) => {
+  setTimeout(
+    () =>
+      setMainData((value) => {
+        value.modalContent = content
+        return { ...value }
+      }),
+    3000
+  )
+}
+
+const hideModal = (setMainData: React.Dispatch<React.SetStateAction<MainData>>) => {
+  setMainData((value) => {
+    value.modalContent = ""
+    return { ...value }
+  })
 }
 
 export const visitPlanet = (planet: keyof typeof CELESTIAL_BODIES) => {

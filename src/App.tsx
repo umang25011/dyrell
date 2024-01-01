@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react"
 import { startMain } from "./helper/journey"
 import Modal from "./components/modal/Modal"
+import { MainData } from "./helper/constants"
 
 function App() {
   const startButtonRef = useRef<HTMLAnchorElement>(null)
   const [pageLoaded, setPageLoaded] = useState(false)
+  const [mainData, setMainData] = useState<MainData>({ modalContent: "" })
 
   useEffect(() => {
     const intervalId = !pageLoaded
@@ -27,7 +29,7 @@ function App() {
     let timeoutID: NodeJS.Timeout
     if (pageLoaded) {
       timeoutID = setTimeout(() => {
-        startMain()
+        startMain(setMainData)
       }, 3000)
     }
     return () => {
@@ -45,7 +47,7 @@ function App() {
           </a>
         </div>
       </div>
-      <Modal />
+      <Modal content={mainData.modalContent} />
       <div>
         <audio id="promptSound" src="res/prompt/ding.wav" />
       </div>
