@@ -36,11 +36,30 @@ export interface MainData {
   modalContent: string
 }
 
+export interface ICustomPlanetData {
+  name: keyof typeof CELESTIAL_BODIES
+  timeToWait: number
+  modalContent: string
+  funFact: string
+}
+
+export const CustomPlanetData: ICustomPlanetData[] = [
+  { name: "Sun", timeToWait: 30000, modalContent: "Sun", funFact: "No" },
+  { name: "Mercury", timeToWait: 30000, modalContent: "Mercury", funFact: "No" },
+  { name: "Venus", timeToWait: 30000, modalContent: "Venus", funFact: "No" },
+  { name: "Earth", timeToWait: 30000, modalContent: "Earth", funFact: "No" },
+  { name: "Moon", timeToWait: 30000, modalContent: "Moon", funFact: "No" },
+  { name: "Mars", timeToWait: 30000, modalContent: "Mars", funFact: "No" },
+  { name: "Jupiter", timeToWait: 30000, modalContent: "Jupiter", funFact: "No" },
+  { name: "Saturn", timeToWait: 30000, modalContent: "Saturn", funFact: "No" },
+  { name: "Uranus", timeToWait: 30000, modalContent: "Uranus", funFact: "No" },
+  { name: "Neptune", timeToWait: 30000, modalContent: "Neptune", funFact: "No" },
+  { name: "Pluto", timeToWait: 30000, modalContent: "Pluto", funFact: "No" },
+]
+
 export const CELESTIAL_BODIES = {
   Sun: {
     name: "Sun",
-    timeToWait: 30000,
-    content: "Sun",
     star: true,
     parent: "Sun",
     radius: 200,
@@ -70,8 +89,6 @@ export const CELESTIAL_BODIES = {
   },
   Mercury: {
     name: "Mercury",
-    timeToWait: 30000,
-    content: "Mercury",
     radius: 3.8256,
     parent: "Sun",
     shineColor: 0x9999ff,
@@ -95,8 +112,6 @@ export const CELESTIAL_BODIES = {
   },
   Venus: {
     name: "Venus",
-    timeToWait: 30000,
-    content: "Venus",
     radius: 9.488,
     parent: "Sun",
     shineColor: 0x9999ff,
@@ -127,9 +142,7 @@ export const CELESTIAL_BODIES = {
   },
   Earth: {
     name: "Earth",
-    timeToWait: 30000,
-    content: "Earth",
-    radius: 10, 
+    radius: 10,
     parent: "Sun",
     shineColor: 0x6666ff,
     orbit: {
@@ -166,8 +179,6 @@ export const CELESTIAL_BODIES = {
   },
   Comet: {
     name: "Comet",
-    timeToWait: 30000,
-    content: "Hello",
     parent: "Sun",
     radius: 0,
     spherical: false,
@@ -181,8 +192,6 @@ export const CELESTIAL_BODIES = {
   },
   Ship: {
     name: "Ship",
-    timeToWait: 30000,
-    content: "Hello",
     parent: "Earth",
     radius: 0.2,
     spherical: false,
@@ -205,8 +214,6 @@ export const CELESTIAL_BODIES = {
   },
   Astronaut: {
     name: "Astronaut",
-    timeToWait: 30000,
-    content: "Hello",
     parent: "Earth",
     radius: 0.05,
     spherical: false,
@@ -232,8 +239,6 @@ export const CELESTIAL_BODIES = {
   },
   Moon: {
     name: "Moon",
-    timeToWait: 30000,
-    content: "Hello",
     radius: 2.7243,
     parent: "Earth",
     shineColor: 0xff9988,
@@ -257,8 +262,6 @@ export const CELESTIAL_BODIES = {
   },
   Mars: {
     name: "Mars",
-    timeToWait: 30000,
-    content: "Hello",
     radius: 5.3226,
     parent: "Sun",
     shineColor: 0xff9988,
@@ -289,8 +292,6 @@ export const CELESTIAL_BODIES = {
   },
   Phobos: {
     name: "Phobos",
-    timeToWait: 30000,
-    content: "Hello",
     radius: 1,
     parent: "Mars",
     shineColor: 0xff9988,
@@ -314,8 +315,6 @@ export const CELESTIAL_BODIES = {
   },
   Deimos: {
     name: "Deimos",
-    timeToWait: 30000,
-    content: "Hello",
     radius: 0.5,
     parent: "Mars",
     shineColor: 0xff9988,
@@ -339,8 +338,6 @@ export const CELESTIAL_BODIES = {
   },
   Jupiter: {
     name: "Jupiter",
-    timeToWait: 30000,
-    content: "Hello",
     radius: 112.09,
     parent: "Sun",
     shineColor: 0x9999ff,
@@ -375,8 +372,6 @@ export const CELESTIAL_BODIES = {
   },
   Callisto: {
     name: "Callisto",
-    timeToWait: 30000,
-    content: "Hello",
     radius: 4.0,
     parent: "Jupiter",
     shineColor: 0xff9988,
@@ -399,8 +394,6 @@ export const CELESTIAL_BODIES = {
   },
   Europa: {
     name: "Europa",
-    timeToWait: 30000,
-    content: "Hello",
     radius: 3.0,
     parent: "Jupiter",
     shineColor: 0xff9988,
@@ -423,8 +416,6 @@ export const CELESTIAL_BODIES = {
   },
   Io: {
     name: "Io",
-    timeToWait: 30000,
-    content: "Hello",
     radius: 3.0,
     parent: "Jupiter",
     shineColor: 0xff9988,
@@ -447,8 +438,6 @@ export const CELESTIAL_BODIES = {
   },
   Saturn: {
     name: "Saturn",
-    timeToWait: 30000,
-    content: "Hello",
     radius: 94.49,
     parent: "Sun",
     shineColor: 0x9999ff,
@@ -489,8 +478,6 @@ export const CELESTIAL_BODIES = {
   },
   Dione: {
     name: "Dione",
-    timeToWait: 30000,
-    content: "Hello",
     radius: 5.0,
     parent: "Saturn",
     shineColor: 0xff9988,
@@ -513,8 +500,6 @@ export const CELESTIAL_BODIES = {
   },
   Titan: {
     name: "Titan",
-    timeToWait: 30000,
-    content: "Hello",
     radius: 6.0,
     parent: "Saturn",
     shineColor: 0xff9988,
@@ -537,8 +522,6 @@ export const CELESTIAL_BODIES = {
   },
   Uranus: {
     name: "Uranus",
-    timeToWait: 30000,
-    content: "Hello",
     radius: 40.07,
     parent: "Sun",
     shineColor: 0x9999ff,
@@ -573,8 +556,6 @@ export const CELESTIAL_BODIES = {
   },
   Neptune: {
     name: "Neptune",
-    timeToWait: 30000,
-    content: "Hello",
     radius: 38.83,
     parent: "Sun",
     shineColor: 0x9999ff,
@@ -602,8 +583,6 @@ export const CELESTIAL_BODIES = {
   },
   Pluto: {
     name: "Pluto",
-    timeToWait: 30000,
-    content: "Hello",
     radius: 15,
     parent: "Sun",
     shineColor: 0x9999ff,

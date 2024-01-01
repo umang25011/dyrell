@@ -1,4 +1,4 @@
-import { CELESTIAL_BODIES, MainData, SLEEP } from "./constants"
+import { CELESTIAL_BODIES, CustomPlanetData, MainData, SLEEP } from "./constants"
 
 export const journeyThroughSpace = () => {
   window.nextBody = "Earth"
@@ -21,15 +21,15 @@ export const startMain = (setMainData: React.Dispatch<React.SetStateAction<MainD
 const startTheJourney = async (setMainData: React.Dispatch<React.SetStateAction<MainData>>) => {
   // objects will be visited in this order
   const FlowOfVisit: (keyof typeof CELESTIAL_BODIES)[] = ["Sun", "Mercury", "Venus", "Earth"]
-  for (let index = 0; index < FlowOfVisit.length; index++) {
-    const element = FlowOfVisit[index]
-    visitPlanet(element)
+  for (let index = 0; index < CustomPlanetData.length; index++) {
+    const element = CustomPlanetData[index]
+    visitPlanet(element.name)
 
     // show the modal
-    displayModal(CELESTIAL_BODIES[element].content, setMainData)
+    displayModal(element.modalContent, setMainData)
 
     // wait for users to read the content
-    await SLEEP(CELESTIAL_BODIES[element].timeToWait)
+    await SLEEP(element.timeToWait)
     hideModal(setMainData)
   }
 }
