@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
 import { startMain } from "./helper/journey"
-import Modal from "./components/modal/Modal"
 import { MainData } from "./helper/constants"
 
 function App() {
@@ -40,14 +39,13 @@ function App() {
     <div>
       <div id="container">
         <div id="prompt">
-          <img src="res/loading/earth.jpg" width="60%" />
-          <h3>Buckle Up for a Thrilling Space Adventure Through My Portfolio!</h3>
-          <a ref={startButtonRef} id="control" href="#" className="progress">
+          <img src="res/loading/earth.jpg" alt="Earth" width="60%" />
+          <h3>Buckle Up for a Thrilling Space Adventure!</h3>
+          <span ref={startButtonRef} id="control" className="progress">
             Ready?
-          </a>
+          </span>
         </div>
       </div>
-      <Modal content={mainData.modalContent} />
       <div>
         <audio id="promptSound" src="res/prompt/ding.wav" />
       </div>

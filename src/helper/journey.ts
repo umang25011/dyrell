@@ -20,37 +20,15 @@ export const startMain = (setMainData: React.Dispatch<React.SetStateAction<MainD
 
 const startTheJourney = async (setMainData: React.Dispatch<React.SetStateAction<MainData>>) => {
   // objects will be visited in this order
-  const FlowOfVisit: (keyof typeof CELESTIAL_BODIES)[] = ["Sun", "Mercury", "Venus", "Earth"]
   for (let index = 0; index < CustomPlanetData.length; index++) {
     const element = CustomPlanetData[index]
     visitPlanet(element.name)
 
-    // show the modal
-    displayModal(element.modalContent, setMainData)
-
     // wait for users to read the content
     await SLEEP(element.timeToWait)
-    hideModal(setMainData)
   }
 }
 
-const displayModal = (content: string, setMainData: React.Dispatch<React.SetStateAction<MainData>>) => {
-  setTimeout(
-    () =>
-      setMainData((value) => {
-        value.modalContent = content
-        return { ...value }
-      }),
-    3000
-  )
-}
-
-const hideModal = (setMainData: React.Dispatch<React.SetStateAction<MainData>>) => {
-  setMainData((value) => {
-    value.modalContent = ""
-    return { ...value }
-  })
-}
 
 export const visitPlanet = (planet: keyof typeof CELESTIAL_BODIES) => {
   // Show information about the current planet
@@ -61,5 +39,4 @@ export const visitPlanet = (planet: keyof typeof CELESTIAL_BODIES) => {
 
   // Simulate the onChange event manually
   window.params.Camera = planet
-  // window.params.onChange(planet)
 }
